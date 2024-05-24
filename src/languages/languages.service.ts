@@ -5,7 +5,7 @@ import { UpdateLanguageDto } from './dto/update-language.dto';
 @Injectable()
 export class LanguagesService {
   create(createLanguageDto: CreateLanguageDto) {
-    return 'This action adds a new language';
+    return createLanguageDto;
   }
 
   findAll() {
@@ -17,7 +17,7 @@ export class LanguagesService {
   }
 
   update(id: number, updateLanguageDto: UpdateLanguageDto) {
-    return `This action updates a #${id} language`;
+    return updateLanguageDto [id];
   }
 
   remove(id: number) {

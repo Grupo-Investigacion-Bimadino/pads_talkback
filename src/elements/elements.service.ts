@@ -5,7 +5,7 @@ import { UpdateElementDto } from './dto/update-element.dto';
 @Injectable()
 export class ElementsService {
   create(createElementDto: CreateElementDto) {
-    return 'This action adds a new element';
+    return createElementDto;
   }
 
   findAll() {
@@ -17,7 +17,7 @@ export class ElementsService {
   }
 
   update(id: number, updateElementDto: UpdateElementDto) {
-    return `This action updates a #${id} element`;
+    return updateElementDto [id];
   }
 
   remove(id: number) {
