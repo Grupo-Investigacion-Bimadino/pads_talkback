@@ -9,11 +9,44 @@ export class CommandsService {
   }
 
   findAll() {
-    return `This action returns all commands`;
+    return [
+    {
+      "id": 1,
+      "instrucction": "describe esta imagen",
+      "funtion": "describir imagen",
+      "id_element" : 1,
+      "id_languages": 1
+  },
+    {
+      "id": 2,
+      "instrucction": "lee este texto",
+      "funtion": "leer texto",
+      "id_element" : 1,
+      "id_languages": 1
+  },
+  {
+    "id": 3,
+    "instrucction": "Haz un resumen de la pantalla",
+    "funtion": "resumir pantalla",
+    "id_element" : 2,
+    "id_languages": 1
+  },  
+
+
+]
+    ;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} command`;
+    return [
+    {
+      "id": 1,
+      "instrucction": "describe esta imagen",
+      "funtion": "describir imagen",
+      "id_element" : 1,
+      "id_languages": 1,
+    }
+  ];
   }
 
   update(id: number, updateCommandDto: UpdateCommandDto) {
@@ -21,6 +54,14 @@ export class CommandsService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} command`;
+    return [
+    {
+      "id": 1,
+      "instrucction": "describe esta imagen",
+      "funtion": "describir imagen",
+      "id_element" : 1,
+      "id_languages": 1,
+    }
+  ];
   }
 }
