@@ -17,7 +17,7 @@ export class CommandsService {
   }
 
   update(id: number, updateCommandDto: UpdateCommandDto) {
-    return `This action updates a #${id} command`;
+    return updateCommandDto [id];
   }
 
   remove(id: number) {
