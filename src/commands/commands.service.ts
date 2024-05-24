@@ -5,7 +5,7 @@ import { UpdateCommandDto } from './dto/update-command.dto';
 @Injectable()
 export class CommandsService {
   create(createCommandDto: CreateCommandDto) {
-    return 'This action adds a new command';
+    return createCommandDto ;
   }
 
   findAll() {
