@@ -19,16 +19,16 @@ export class ElementsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.elementsService.findOne(+id);
+    return this.elementsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateElementDto: UpdateElementDto) {
-    return this.elementsService.update(+id, updateElementDto);
+    return this.elementsService.update(id, updateElementDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.elementsService.remove(+id);
+    return this.elementsService.remove(id);
   }
 }

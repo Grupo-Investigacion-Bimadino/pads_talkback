@@ -1,67 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCommandDto } from './dto/create-command.dto';
 import { UpdateCommandDto } from './dto/update-command.dto';
+import { create_command } from './schema/schema.create-command.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
-export class CommandsService {
-  create(createCommandDto: CreateCommandDto) {
-    return createCommandDto ;
+export class  CommandsService  {
+  constructor(@InjectModel(create_command.name) private create_commandModel: Model<create_command>) {}
+
+  async create(create_commandDto: CreateCommandDto): Promise<create_command> {
+    const create_command = new this.create_commandModel(create_commandDto);
+    return create_command.save();
+     }
+
+     async findAll(): Promise<create_command[]> {
+      return this.create_commandModel.find().exec();
   }
 
-  findAll() {
-    return [
-    {
-      "id": 1,
-      "instrucction": "describe esta imagen",
-      "funtion": "describir imagen",
-      "id_element" : 1,
-      "id_languages": 1
-  },
-    {
-      "id": 2,
-      "instrucction": "lee este texto",
-      "funtion": "leer texto",
-      "id_element" : 1,
-      "id_languages": 1
-  },
-  {
-    "id": 3,
-    "instrucction": "Haz un resumen de la pantalla",
-    "funtion": "resumir pantalla",
-    "id_element" : 2,
-    "id_languages": 1
-  },  
-
-
-]
-    ;
+  async findOne(id: string): Promise<create_command> {
+    return this.create_commandModel.findById(id).exec();
   }
 
-  findOne(id: number) {
-    return [
-    {
-      "id": 1,
-      "instrucction": "describe esta imagen",
-      "funtion": "describir imagen",
-      "id_element" : 1,
-      "id_languages": 1,
-    }
-  ];
+  async update(id: string, updateCommandDto: UpdateCommandDto) {
+    const updateCommand = await this.create_commandModel.findByIdAndUpdate(id, updateCommandDto) 
+    return updateCommand
   }
 
-  update(id: number, updateCommandDto: UpdateCommandDto) {
-    return updateCommandDto [id];
-  }
-
-  remove(id: number) {
-    return [
-    {
-      "id": 1,
-      "instrucction": "describe esta imagen",
-      "funtion": "describir imagen",
-      "id_element" : 1,
-      "id_languages": 1,
-    }
-  ];
+  async remove(id: string) {
+    const deletecomand = await this.create_commandModel.findByIdAndDelete(id)
+    return deletecomand
   }
 }
