@@ -1,13 +1,25 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+
 import { AppService } from './app.service';
 import { CommandsModule } from './commands/commands.module';
 import { ElementsModule } from './elements/elements.module';
 import { LanguagesModule } from './languages/languages.module';
+
 import { MongooseModule } from '@nestjs/mongoose'; 
+import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
-  imports: [CommandsModule, ElementsModule, LanguagesModule, MongooseModule.forRoot('mongodb://jorged:1003345316@ac-sjxqnea-shard-00-00.f67wnfv.mongodb.net:27017,ac-sjxqnea-shard-00-01.f67wnfv.mongodb.net:27017,ac-sjxqnea-shard-00-02.f67wnfv.mongodb.net:27017/julia?replicaSet=atlas-afw8ku-shard-0&ssl=true&authSource=admin')],
+  imports: [
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'client') }),
+    MongooseModule.forRoot(process.env.DB_URI),
+    CommandsModule, 
+    ElementsModule, 
+    LanguagesModule, 
+    ],
   controllers: [AppController],
   providers: [AppService],
 })
