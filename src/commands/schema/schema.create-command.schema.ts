@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type create_commandDocument = HydratedDocument<create_command>;
+export type commandDocument = HydratedDocument<Commands>;
 
 @Schema()
-export class create_command {
+export class Commands {
   @Prop()
   instrucction: string;  
 
@@ -19,4 +19,4 @@ export class create_command {
 
 }
 
-export const create_commandSchema = SchemaFactory.createForClass(create_command);
+export const CommandsSchema = SchemaFactory.createForClass(Commands);
