@@ -1,18 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+
+@Schema({timestamps: true})
 export class Languages extends Document {
   @Prop({ required: true })
   name: string;
 
-  @Prop()
+  @Prop({type: String, isRequired: true})
   contracition: string;
 
-  @Prop()
+  @Prop({type: String, isRequired: true})
   current_language: string;
 
-  @Prop()
+  @Prop({type: String, isRequired: true})
   default_language: string;
   
 }
